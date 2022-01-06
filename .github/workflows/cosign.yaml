@@ -35,15 +35,14 @@ jobs:
       - name: get digest
         id: get-step
         run: |
-          echo "::set-output name=digest::$(make docker-get-digest)\n"
+          echo "::set-output name=digest::$(make docker-get-digest)"
 
       - name: Sign image
         env:
           COSIGN_EXPERIMENTAL: "true"
         run: |
           cosign sign \ 
-          -a "repo=${{ steps.get-step.Digest }}" \
-          -a "repo1=${{ steps.get-step.outputs.digest }}" \
-          -a "workflow=${{ steps.get-step }}" \
-          -a "ref=${{ steps.get-step.outputs }}" \
-          ghcr.io/namanl2001/kyverno@${{ steps.get-step.outputs.diges }}
+          -a "repo=${{ github.repository }}" \
+          -a "workflow=${{ github.workflow }}" \
+          -a "ref=${{ github.sha }}" \
+          ghcr.io/kyverno/kyverno-cli@${{ steps.get-step.outputs.digest }}
