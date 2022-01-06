@@ -43,7 +43,7 @@ jobs:
         run: |
           cosign sign \ 
           -a "repo=${{ steps.get-step.Digest }}" \
-          -a "repo1=${{ steps.get-step.digest }}" \
+          -a "repo1=${{ steps.get-step.outputs.digest }}" \
           -a "workflow=${{ steps.get-step }}" \
           -a "ref=${{ steps.get-step.outputs }}" \
           ghcr.io/namanl2001/kyverno@${{ steps.get-step.outputs.diges }}
