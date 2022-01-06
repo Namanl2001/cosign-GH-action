@@ -45,4 +45,4 @@ jobs:
           -a "repo=${{ github.repository }}" \
           -a "workflow=${{ github.workflow }}" \
           -a "ref=${{ github.sha }}" \
-          ghcr.io/kyverno/kyverno-cli@${{ steps.get-step.outputs.digest }}
+          ghcr.io/namanl2001/kyverno@${{ steps.get-step.outputs.digest }}
